@@ -536,7 +536,9 @@ public class JsonObject extends JsonValue implements Iterable<Member> {
       throw new NullPointerException( "name is null" );
     }
     int index = indexOf( name );
-    return index != -1 ? values.get( index ) : null;
+    if(index == -1) return null;
+    JsonValue val = values.get( index );
+    return NULL.equals(val) ? null : values.get( index );
   }
 
   /**
